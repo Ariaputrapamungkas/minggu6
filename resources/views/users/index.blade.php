@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('STUDENT DATA') }}</div>
+                <div class="card-header">{{ __('USER DATA') }}</div>
                 
                 <div class="card-body">
                     @if (session('status'))
@@ -17,23 +17,19 @@
                     <table class="table teble-responsive table-striped">
                         <thead>
                             <tr>
-                                <th>NIM</th>
                                 <th>Name</th>
-                                <th>Class</th>
-                                <th>Department</th>
+                                <th>Email</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($student as $s)
+                            @foreach($user as $u)
                             <tr>
-                                <td>{{ $s->nim }}</td>
-                                <td>{{ $s->name }}</td>
-                                <td>{{ $s->class }}</td>
-                                <td>{{ $s->departement }}</td>
+                                <td>{{ $u->name }}</td>
+                                <td>{{ $u->email }}</td>
                                 <td>
-                                    <form action="/students/{{$s->id}}" method="post">
-                                        <a href="/students/{{$s->id}}/edit" class="btn btn-warning">Edit</a>
-                                        <a href="/students/{{$s->id}}" class="btn btn-info">View</a>
+                                    <form action="/users/{{$u->id}}" method="post">
+                                        <a href="/users/{{$u->id}}/edit" class="btn btn-warning">Edit</a>
+                                        <a href="/users/{{$u->id}}" class="btn btn-info">View</a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" name="delete" class="btn btn-danger">Delete</button>
@@ -43,7 +39,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <a href="/students/create" class="btn btn-primary">Add Data</a>
+                    <a href="/users/create" class="btn btn-primary">Add Data</a>
                     <br><br>
                 </div>
             </div>

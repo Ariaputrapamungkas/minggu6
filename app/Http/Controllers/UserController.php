@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Student;
+use App\Models\User;
 
-class StudentController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
-        return view('students.index',['student'=>$students]);
+        $users = User::all();
+        return view('users.index',['user'=>$users]);
     }
 
     /**
@@ -25,7 +25,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        return view('users.create');
     }
 
     /**
@@ -37,9 +37,9 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         //add data
-        Student::create($request->all());
+        User::create($request->all());
         // if true, redirect to index
-        return redirect()->route('students.index')->with('success', 'Add data success!');
+        return redirect()->route('users.index')->with('success', 'Add data success!');
     }
 
     /**
@@ -50,8 +50,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        $student = Student::find($id);
-        return view('students.view',['student'=>$student]);
+        $user = User::find($id);
+        return view('users.view',['user'=>$user]);
     }
 
     /**
@@ -62,8 +62,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        $student = Student::find($id);
-        return view('students.edit',['student'=>$student]);
+        $user = User::find($id);
+        return view('users.edit',['user'=>$user]);
     }
 
     /**
@@ -75,14 +75,12 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $student = Student::find($id);
-        $student->nim = $request->nim;
-        $student->name = $request->name;
-        $student->class = $request->class;
-        $student->departement = $request->departement;
-        $student->phone_number = $request->phone_number;
-        $student->save();
-        return redirect()->route('students.index');
+        $user = User::find($id);
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->email = $request->email;      
+        $user->save();
+        return redirect()->route('users.index');
     }
 
     /**
@@ -93,8 +91,8 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        $student = Student::find($id);
-        $student->delete();
-        return redirect()->route('students.index');
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('users.index');
     }
 }
