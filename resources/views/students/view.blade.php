@@ -13,6 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <img width='150px' src="{{asset('storage/'.$student->photo)}}"><br><br>
                     <table class="table teble-responsive table-striped">
                         <tr><th>Name</th><th>:</th><td>{{ $student->name }}</td></tr>
                         <tr><th>NIM</th><th>:</th><td>{{ $student->nim }}</td></tr>

@@ -16,6 +16,6 @@ class Student extends Model
     }
 
     public function courses(){
-        return $this->belongsToMany(Course::class,'course_id');
+        return $this->belongsToMany(Course::class)->withPivot('nilai');
     }
 }

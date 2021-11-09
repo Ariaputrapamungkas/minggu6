@@ -13,9 +13,9 @@
             <div>
                 <br><br>
             </div>
-            <b>Nama: </b> {{ $students->name }} <br>
-            <b>NIM: </b> {{ $students->nim }} <br>
-            <b>Kelas: </b>  {{ $students->kelas->class_name }}  <br>    
+            <b>Nama: </b> {{ $student->name }} <br>
+            <b>NIM: </b> {{ $student->nim }} <br>
+            <b>Kelas: </b>  {{ $student->kelas->class_name }}  <br>    
             <div class="card">
                 <div class="card-header">{{ __('STUDENT DATA') }}</div>
                 <div class="card-body">
@@ -35,16 +35,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($student->courses as $c)
                             <tr>
-                                <td>{{ $courses['class_name'] }}</td>
-                                <td>{{ $courses['sks'] }}</td>
-                                <td>{{ $courses['semester'] }}</td>
-                                <td>{{ $courses['nilai'] }}</td>                                
-                            </tr>                                
+                                <td>{{ $c->course_name }}</td>
+                                <td>{{ $c->sks }}</td>
+                                <td>{{ $c->semester }}</td>
+                                <td>{{ $c->pivot->nilai }}</td>                                
+                            </tr> 
+                            @endforeach                            
                         </tbody>
                     </table>
-                    <a href="/students" class="btn btn-primary">Back</a>
+                    <a href="/students/{{$student->id}}/report" class="btn btn-success" target="_blank">PRINT PDF</a>
                     <br><br>
+                    <a href="/students" class="btn btn-primary">Back</a>
                 </div>                    
             </div>               
         </div>            
